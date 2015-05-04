@@ -1,0 +1,183 @@
+
+
+body{
+background-color:#A0A0A0;
+}
+
+
+#wrapper{
+width:1200px;
+background-color:#ffffff;
+padding-top:15px;
+top:120px;
+margin-left:auto;
+margin-right:auto;
+}
+
+
+
+.navbar{
+width:1200px;
+height:100px;
+margin-left:67px;
+}
+.navbar a {
+
+text-decoration:none;
+
+}
+.navbar a div{
+float:left;
+color:#ffffff;
+font-face: ariel;
+font-weight:bold;
+font-size:20px;
+}
+
+
+
+
+
+
+p{
+font-weight:bold;
+font-style:italic;
+}
+
+
+
+.dropdown{
+background-color:#ffffff;
+width:1200px;
+height:300px;
+margin-left:67px;
+position:absolute;
+top:40px;
+z-index:1;
+display:none;
+box-shadow:3px 3px 3px #000000;
+}
+
+
+.tab{
+width:150px;
+height:200px;
+background-color:#bdbdbd;
+opacity: .3;
+filter:alpha(opacity=30);
+}
+.hide{
+display:none;
+
+}
+
+.dropdown  div{
+float:left;
+width:200px;
+height:100px;
+
+}
+.dropdown a{
+text-decoration:none;
+color:#000000;
+}
+
+
+ul{
+list-style:none;
+
+}
+.dropdown ul li{
+padding-bottom:15px;
+
+}
+.font1{
+
+font-size:20px;
+font-face: sans-serif;
+
+
+}
+.font2{
+font-size: 16px;
+font-face: arial;
+color:#000000;
+}
+
+/* this is the styles for the product list */
+table tr{
+height:150px;
+}
+table tr td{
+height:150px;
+
+}
+table{
+text-align:left;
+}
+#products{
+width:980px;
+height:900px;
+overflow-y:scroll;
+overflow-x:hidden;
+margin-left:200px;
+}
+
+figure{
+width:150px;
+
+}
+figure img{
+
+width:200px;
+height:200px;
+
+}
+figcaption{
+font-size:14px; 
+color:#000000;
+text-align:left;
+width:150px
+height:150px;
+}
+
+
+
+/* this is the footer */
+
+#footer_menu {
+	
+margin-top:20px;
+color:#ffffff;
+width:1180px;
+height:200px;
+margin-left:auto;
+margin-right:auto;
+background-color:#a0a0a0;
+box-shadow:0px 0px 8px 0px #000000;
+}
+
+
+
+#footer_menu div{
+float:left;
+width:300px;
+height:200px;
+
+}
+ #footer_menu p{
+font-size:20px;
+font-face: sans-serif;
+
+}
+#footer_menu ul{
+font-size: 16px;
+font-face: arial;
+color:#ffffff;
+}
+
+#howmanytoshow{
+position:relative;
+left:700px;
+
+}

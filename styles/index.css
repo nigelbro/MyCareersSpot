@@ -1,0 +1,50 @@
+
+body{
+
+background-color:#000000;
+}
+.bgimages{
+
+width: 100%;
+height:100%;
+overflow: hidden;
+position: absolute;
+z-index: -1;
+}
+.bgimages img{
+
+	width:100%;
+	height:100%;
+	z-index: -1;
+	opacity: .4;
+	filter:alpha(opacity=40);
+}
+
+#logo{
+width:50%;
+height: 50%;
+position:absolute;
+top:15%;
+left:25%;
+text-align: center;
+opacity: .2;
+filter:alpha(opacity = 20);
+
+}
+
+#enter{
+
+position:absolute;
+top:550px;
+left:44%;
+font-size:40px;
+font-face:ariel;
+
+}
+#enter a{
+ text-decoration:none;
+color:#ffffff;
+
+
+
+}

@@ -1,0 +1,52 @@
+
+
+#carousel{
+
+width:650px;			/* This is the container that will hold the images of the carousel*/
+height:500px;
+overflow:hidden;
+margin-left:150px;
+opacity:.8;
+filter:alpha(opacity=80);
+box-shadow: 5px 10px 10px 10px #ffffff;
+position:absolute;
+left:40%;
+top:19%;
+text-align:center;
+
+color:#000000;
+font-size: 40px;
+
+text-shadow: 1px 1px #ffffff;
+}
+
+#carousel ul{
+list-style:none;
+width:2600px;
+height:500px;
+
+
+}
+#carousel ul li{
+float:left;
+height:500px;
+width:650px;
+
+
+
+}
+
+#carousel ul li img{
+height:500px;
+width:650px;
+
+
+
+}
+
+
+
+
+
+
+

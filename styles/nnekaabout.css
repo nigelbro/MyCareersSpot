@@ -1,0 +1,152 @@
+
+
+
+body{
+background-color:#000000;
+
+
+}
+
+
+
+
+
+#bio{
+
+	color:#ffffff;
+position: absolute;	
+width:55%;
+height:600px;
+background-image:url("biopic3.png");
+background-repeat:no-repeat;
+font-size:26px;
+float:left;
+z-index:-1;
+background-color: #000000;
+}
+.navbar{
+
+height:100px;
+margin-left:400px;
+width: 70%;
+position:relative;
+text-align: center;
+
+}
+.navbar a {
+
+text-decoration:none;
+
+}
+.navbar a div{
+float:left;
+color:#ffffff;
+font-face: ariel;
+font-weight:bold;
+font-size:18px;
+width: 15%;
+
+}
+
+#message{
+width:50%;
+margin-left:600px;
+text-align:center;  
+font-size:20px;
+font-face:ariel;
+position:relative;
+top:30%;
+background-color:#bdbdbd;
+box-shadow: 4px 4px 4px 4px #ffffff;
+border-style: solid;
+border-color: #ffffff;
+overflow-y: scroll;
+}
+
+
+p{
+font-weight:bold;
+font-style:italic;
+}
+
+
+
+.dropdown{
+background-color:#000000;
+width:880px;
+height:300px;
+margin-left:450px;
+position:absolute;
+top:45px;
+display:none;
+}
+
+
+.tab{
+width: 50px;
+height:50px;
+
+
+}
+.hide{
+display:none;
+
+}
+
+.dropdown  div{
+float:left;
+width:200px;
+height:100px;
+
+}
+.dropdown a{
+text-decoration:none;
+color:#ffffff;
+}
+
+
+ul{
+list-style:none;
+
+}
+.dropdown ul li{
+padding-bottom:15px;
+
+}
+
+/* this is the footer */
+
+#footer_menu {
+	
+position:absolute;
+top:750px;
+color:#ffffff;
+width:1280px;
+height:180px;
+padding-top: 20px;
+
+}
+
+
+
+#footer_menu div{
+
+float:left;
+width:300px;
+height:200px;
+
+}
+
+.font1{
+
+font-size:20px;
+font-face: sans-serif;
+
+
+}
+.font2{
+font-size: 16px;
+font-face: arial;
+color:#ffffff;
+}
+
