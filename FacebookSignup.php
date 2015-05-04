@@ -79,7 +79,7 @@ position:relative;
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script>
 $(document).ready(function(){
-$.getJSON("dropdowntest.php",  success = function(data){
+$.getJSON("countries.php",  success = function(data){
 
 var options = "";
 for (var i=0; i < data.length; ++i){
@@ -93,7 +93,7 @@ $("#country").change();
 });
 
 $("#country").change(function(){
-$.getJSON("dropdownstatestest.php?name=" + $(this).val(),  success = function(data){
+$.getJSON("states.php?name=" + $(this).val(),  success = function(data){
 
 var options = "";
 for (var i=0; i < data.length; ++i){
@@ -110,7 +110,7 @@ $("#state").change();
 
 });
 $("#state").change(function(){
-$.getJSON("dropdowncitiestest.php?state_prov=" + $(this).val(),  success = function(data){
+$.getJSON("cities.php?state_prov=" + $(this).val(),  success = function(data){
 
 var options = "";
 for (var i=0; i < data.length; ++i){
@@ -127,7 +127,7 @@ $("#city").append(options);
 });
 
 $("#city").change(function(){
-$.getJSON("dropdowncollegetest.php?city=" + $(this).val(),  success = function(data){
+$.getJSON("college.php?city=" + $(this).val(),  success = function(data){
 
 var options = "";
 for (var i=0; i < data.length; ++i){
