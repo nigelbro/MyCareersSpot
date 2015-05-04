@@ -90,8 +90,15 @@ position:relative;
         if (this.readyState == 4)
           if (this.status == 200)
             if (this.responseText != null)
-              document.getElementById('info').innerHTML = this.responseText
-          	
+        document.getElementById('signupbutton').disabled = false;      
+	document.getElementById('info').innerHTML = this.responseText
+        var status = document.getElementById('emailstatus').innerHTML;
+	if(status == "This email address is already in use"){
+
+              document.getElementById('signupbutton').disabled = true;
+            }else{
+              document.getElementById('signupbutton').disabled = false;
+            }
       }
       request.send(params)
     }

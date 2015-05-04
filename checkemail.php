@@ -7,7 +7,7 @@
     $result = queryMysql("SELECT * FROM signup WHERE Email='$email'");
 
     if ($result->num_rows)
-      echo  "<span class='taken'>&nbsp;&#x2718; " .
+      echo  "<span class='taken'id='emailstatus'>" .
             "This email address is already in use</span>";
     else
       echo "<span class='available'>&nbsp;&#x2714; " .
