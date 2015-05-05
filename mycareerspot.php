@@ -191,32 +191,68 @@ if($loggedin){
 
                 <div class="row" id="suppressscrollX" style="border-style:solid;height:750px;overflow:hidden;position:relative;width:100%;margin-top:45px;margin-left:10px;z-index:1;border-color:#000000">
                 <div id="job"class="row col-xs-10 col-sm-10 col-md-10" style="font-family:sans-serif;position:relative;right:15px;border-style:solid;border-color:#000000;height:300px;float:right">
-                <h2>Sr. Web Designer</h2>
-                <h4>Hearst Digital Marketing Services</h4>
-                <p style="font-size:18px">The Senior Web Designer is responsible for the design and development of advanced/custom websites. 
-                 The designer will work with Web Project Coordinators, Customers and Manager to create aesthetically pleasing,
-                 fully functioning websites. Best practices and design trends will be utilized to ensure the success of the projects. 
-                 They will be required to have experience in graphics, layout, scripting, programming, as well as development involving 
-                 compatibility and seamless integration with various technologies such as, but not limited to, HTML, CSS, PHP, JavaScript, JQuery.</p>
-                <p class="posted" style="color:#160EEC;font-size:16px">posted: 2 hours ago</p>                
+                 <h2 id="jobTitle"></h2>
+                <h4 id="company></h4>
+                <p style="font-size:18px" id="short-jobdescription"></p>
+                <p class="posted" style="color:#160EEC;font-size:16px"</p>                
                 </div>
                 <div id="job"class="row col-xs-10 col-sm-10 col-md-10" style="position:relative;right:15px;border-style:solid;border-color:#000000;height:300px;float:right">
+<h2 id="jobTitle"></h2>
+<h4 id="company"></h4>
+<p style="font-size:18px" id="short-jobdescription"></p>
+<p class="posted" style="color:#160EEC;font-size:16px"></p>
+		 </div>
+                <div id="job"class="row col-xs-10 col-sm-10 col-md-10" style="position:relative;right:15px;border-style:solid;border-color:#000000;height:300px;float:right">
+
+<h2 id="jobTitle"></h2>
+<h4 id="company"></h4>
+<p style="font-size:18px" id="short-jobdescription"></p>
+<p class="posted" style="color:#160EEC;font-size:16px"></p>
                 </div>
                 <div id="job"class="row col-xs-10 col-sm-10 col-md-10" style="position:relative;right:15px;border-style:solid;border-color:#000000;height:300px;float:right">
+
+<h2 id="jobTitle"></h2>
+<h4 id="company"></h4>
+<p style="font-size:18px" id="short-jobdescription"></p>
+<p class="posted" style="color:#160EEC;font-size:16px"></p>
                 </div>
                 <div id="job"class="row col-xs-10 col-sm-10 col-md-10" style="position:relative;right:15px;border-style:solid;border-color:#000000;height:300px;float:right">
+
+<h2 id="jobTitle"></h2>
+<h4 id="company"></h4>
+<p style="font-size:18px" id="short-jobdescription"></p>
+<p class="posted" style="color:#160EEC;font-size:16px"></p>
                 </div>
                 <div id="job"class="row col-xs-10 col-sm-10 col-md-10" style="position:relative;right:15px;border-style:solid;border-color:#000000;height:300px;float:right">
+
+<h2 id="jobTitle"></h2>
+<h4 id="company"></h4>
+<p style="font-size:18px" id="short-jobdescription"></p>
+<p class="posted" style="color:#160EEC;font-size:16px"></p>
                 </div>
                 <div id="job"class="row col-xs-10 col-sm-10 col-md-10" style="position:relative;right:15px;border-style:solid;border-color:#000000;height:300px;float:right">
+
+<h2 id="jobTitle"></h2>
+<h4 id="company"></h4>
+<p style="font-size:18px" id="short-jobdescription"></p>
+<p class="posted" style="color:#160EEC;font-size:16px"></p>
                 </div>
                 <div id="job"class="row col-xs-10 col-sm-10 col-md-10" style="position:relative;right:15px;border-style:solid;border-color:#000000;height:300px;float:right">
-                </div>
-                <div id="job"class="row col-xs-10 col-sm-10 col-md-10" style="position:relative;right:15px;border-style:solid;border-color:#000000;height:300px;float:right">
+
+<h2 id="jobTitle"></h2>
+<h4 id="company"></h4>
+<p style="font-size:18px" id="short-jobdescription"></p>
+<p class="posted" style="color:#160EEC;font-size:16px"></p>
                 </div>
                 <div id="job" class="row col-xs-10 col-sm-10 col-md-10" style="position:relative;right:15px;border-style:solid;border-color:#000000;height:300px;float:right">
+
+<h2 id="jobTitle"></h2>
+<h4 id="company"></h4>
+<p style="font-size:18px" id="short-jobdescription"></p>
+<p class="posted" style="color:#160EEC;font-size:16px"></p>
                 </div>
                 </div>
+
 
                 </div>
                 <!-- END -->
