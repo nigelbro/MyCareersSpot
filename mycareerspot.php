@@ -35,7 +35,7 @@ if($loggedin){
                 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" >
                 <meta http-equiv="X-UA-Compatible" content="IE=edge">
                 <meta name="viewport" content="width=device-width, initial-scale=1">
-                <title>Untitled 1</title>
+                <title>MyCareersSpot</title>
                 <!-- Bootstrap -->
                 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
                 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -123,14 +123,15 @@ if($loggedin){
 <!--THIS IS THE START OF THE QUERY FORM -->
                 <div class="row" style="margin-top:30px">
                 <div class="col-md-12 col-xs-12 col-sm-12" style="text-align:center">
-                <form class="form-inline">
+                <form class="form-inline"  method='get' action='mycareerspot.php' id='search' >
                 <div class="form-group input-group-lg" style="text-align:left" >
                 <!--<label  for="majors" style="font-size:18px">Major/Career Area</label><br>-->
-                <input  class="form-control " type="text"  style="width:400px"id="majors" name='majors' placeholder="Start Typing A Major/Career Area"></select>
-                </div>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                <div class="form-group input-group-lg" style="text-align:left">
-                <!--<label  for="location" style="font-size:18px">Location</label><br>-->
-                <input type="text" class="form-control" style="width:400px" id="location" placeholder="Choose location">
+                <input  class="form-control " type="text"  style="width:400px"id="majors" required form='search' name='majors' placeholder="Start Typing A Major/Career Area">
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <input type="text" class="form-control"  style="width:200px"required id="city" name='city' form='search' placeholder="Choose a City">
+		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <input type="text" class="form-control" required style="width:200px" id="state" name='state' form='search' placeholder="Choose a State">
+
                 </div>
 
                 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
@@ -142,9 +143,9 @@ if($loggedin){
                 Select a Search <span class="caret"></span>
                 </p>
                 <ul class="dropdown-menu"style="font-size: 20px" role="menu">
-                <li role="presentation"><input type="submit" role="menuitem" tabindex="-1" style="width:100%;background-color:#0080FF"class="btn btn-primary btn-lg " value="Find Careers"></li>
-                <li role="presentation"><input type="submit"role="menuitem" tabindex="-1" style="width:100%;background-color:#0080FF" class="btn btn-primary btn-lg "value="Find Internships"></li>
-                <li role="presentation"><input type="submit"  role="menuitem" tabindex="-1" style="width:100%;background-color:#0080FF" class="btn btn-primary btn-lg value="Find Volunteer Opportunites"></li>
+                <li role="presentation"><input type="submit"  role="menuitem" name='careers' tabindex="-1" form='search'style="width:100%;background-color:#0080FF"class="btn btn-primary btn-lg " value="Careers"></li>
+                <li role="presentation"><input type="submit"role="menuitem" tabindex="-1"form='search'name='internships' style="width:100%;background-color:#0080FF" class="btn btn-primary btn-lg "value="Internships"></li>
+                <li role="presentation"><input type="submit"  role="menuitem" tabindex="-1"form='search' name='volunteer' style="width:100%;background-color:#0080FF" class="btn btn-primary btn-lg" value="Volunteer"></li>
 
                 </ul>
                 </li>
@@ -188,69 +189,79 @@ if($loggedin){
 		         <div class="container-fluid" style="background-color:000000">
 <!-- THIS WILL HOLD THE JOBS AND RECENT SUBMISSION INFORMATION INCLUDING JOB SPECIFIC INFORMATION-->
                 <div class="row" style="width:95%;margin-left:auto;margin-right:auto" >
-
                 <div class="row" id="suppressscrollX" style="border-style:solid;height:750px;overflow:hidden;position:relative;width:100%;margin-top:45px;margin-left:10px;z-index:1;border-color:#000000">
-                <div id="job"class="row col-xs-10 col-sm-10 col-md-10" style="font-family:sans-serif;position:relative;right:15px;border-style:solid;border-color:#000000;height:300px;float:right">
-                 <h2 id="jobTitle"></h2>
-                <h4 id="company></h4>
-                <p style="font-size:18px" id="short-jobdescription"></p>
-                <p class="posted" style="color:#160EEC;font-size:16px"</p>                
-                </div>
-                <div id="job"class="row col-xs-10 col-sm-10 col-md-10" style="position:relative;right:15px;border-style:solid;border-color:#000000;height:300px;float:right">
-<h2 id="jobTitle"></h2>
-<h4 id="company"></h4>
-<p style="font-size:18px" id="short-jobdescription"></p>
-<p class="posted" style="color:#160EEC;font-size:16px"></p>
-		 </div>
-                <div id="job"class="row col-xs-10 col-sm-10 col-md-10" style="position:relative;right:15px;border-style:solid;border-color:#000000;height:300px;float:right">
+                
+_END;
 
-<h2 id="jobTitle"></h2>
-<h4 id="company"></h4>
-<p style="font-size:18px" id="short-jobdescription"></p>
-<p class="posted" style="color:#160EEC;font-size:16px"></p>
-                </div>
-                <div id="job"class="row col-xs-10 col-sm-10 col-md-10" style="position:relative;right:15px;border-style:solid;border-color:#000000;height:300px;float:right">
+if(isset($_GET['careers']) && isset($_GET['majors']) && isset($_GET['city']) && isset($_GET['state'])){
+$major = sanitizeString($_GET['majors']);
+$city = sanitizeString($_GET['city']);
+$state = sanitizeString($_GET['state']);
+$jobs_list= queryMysql("SELECT jobs.date_posted, jobs.job_title,jobs.job_category,jobs.short_job_description,jobs.company, college_majors.Name, cities.city,cities.state_code FROM jobs LEFT JOIN cities ON jobs.city = cities.id LEFT JOIN college_majors ON jobs.major = college_majors.major_id LEFT JOIN states_provinces ON cities.state_code = states_provinces.state_prov WHERE college_majors.Name LIKE '%$major%'  AND (states_provinces.state_prov LIKE '%$state%' OR states_provinces.code LIKE '$state') AND cities.city LIKE '%$city%' ORDER BY date_posted DESC LIMIT 9");
 
-<h2 id="jobTitle"></h2>
-<h4 id="company"></h4>
-<p style="font-size:18px" id="short-jobdescription"></p>
-<p class="posted" style="color:#160EEC;font-size:16px"></p>
-                </div>
-                <div id="job"class="row col-xs-10 col-sm-10 col-md-10" style="position:relative;right:15px;border-style:solid;border-color:#000000;height:300px;float:right">
+$job_rows = $jobs_list->num_rows;
 
-<h2 id="jobTitle"></h2>
-<h4 id="company"></h4>
-<p style="font-size:18px" id="short-jobdescription"></p>
-<p class="posted" style="color:#160EEC;font-size:16px"></p>
-                </div>
-                <div id="job"class="row col-xs-10 col-sm-10 col-md-10" style="position:relative;right:15px;border-style:solid;border-color:#000000;height:300px;float:right">
+        for($j = 0;$j<$job_rows;++$j){
+                $jobs_list->data_seek($j);
+                $job = $jobs_list->fetch_array(MYSQLI_NUM);
+$time = strtotime($job[0]);
+               echo '<div id="job"class="row col-xs-10 col-sm-10 col-md-10" style="font-family:sans-serif;position:relative;right:15px;border-style:solid;border-color:#000000;height:300px;float:right">
+                 <h2 id="jobTitle">'.$job[1].'</h2>
+                <h4 id="location">'.$job[6].",".$job[7].'
+                <h4 id="company"> '.$job[4].'</h4>
+                <p style="font-size:18px" id="short-jobdescription">'.$job[3].'</p>
+                <p class="posted" style="color:#160EEC;font-size:16px">posted on '.date("m/d/Y",$time).'</p>
+                </div>';
 
-<h2 id="jobTitle"></h2>
-<h4 id="company"></h4>
-<p style="font-size:18px" id="short-jobdescription"></p>
-<p class="posted" style="color:#160EEC;font-size:16px"></p>
-                </div>
-                <div id="job"class="row col-xs-10 col-sm-10 col-md-10" style="position:relative;right:15px;border-style:solid;border-color:#000000;height:300px;float:right">
 
-<h2 id="jobTitle"></h2>
-<h4 id="company"></h4>
-<p style="font-size:18px" id="short-jobdescription"></p>
-<p class="posted" style="color:#160EEC;font-size:16px"></p>
-                </div>
-                <div id="job"class="row col-xs-10 col-sm-10 col-md-10" style="position:relative;right:15px;border-style:solid;border-color:#000000;height:300px;float:right">
 
-<h2 id="jobTitle"></h2>
-<h4 id="company"></h4>
-<p style="font-size:18px" id="short-jobdescription"></p>
-<p class="posted" style="color:#160EEC;font-size:16px"></p>
-                </div>
-                <div id="job" class="row col-xs-10 col-sm-10 col-md-10" style="position:relative;right:15px;border-style:solid;border-color:#000000;height:300px;float:right">
+        }
 
-<h2 id="jobTitle"></h2>
-<h4 id="company"></h4>
-<p style="font-size:18px" id="short-jobdescription"></p>
-<p class="posted" style="color:#160EEC;font-size:16px"></p>
-                </div>
+}elseif (isset($_GET['internships']) && isset($_GET['majors']) && isset($_GET['city']) && isset($_GET['state'])){
+$major = sanitizeString($_GET['majors']);
+$city = sanitizeString($_GET['city']);
+$state = sanitizeString($_GET['state']);
+$jobs_list= queryMysql("SELECT internships.date_posted, internships.intern_title,internships.intern_category,internships.short_position_description,internships.company, college_majors.Name, cities.city,cities.state_code FROM internships LEFT JOIN cities ON internships.city = cities.id LEFT JOIN college_majors ON internships.major = college_majors.major_id LEFT JOIN states_provinces ON cities.state_code = states_provinces.state_prov WHERE college_majors.Name LIKE '%$major%'  AND (states_provinces.state_prov LIKE '%$state%' OR states_provinces.code LIKE '$state') AND cities.city LIKE '%$city%' ORDER BY date_posted DESC LIMIT 9");
+
+$job_rows = $jobs_list->num_rows;
+
+        for($j = 0;$j<$job_rows;++$j){
+                $jobs_list->data_seek($j);
+                $job = $jobs_list->fetch_array(MYSQLI_NUM);
+$time = strtotime($job[0]);
+               echo '<div id="job"class="row col-xs-10 col-sm-10 col-md-10" style="font-family:sans-serif;position:relative;right:15px;border-style:solid;border-color:#000000;height:300px;float:right">
+                 <h2 id="jobTitle">'.$job[1].'</h2>
+                <h4 id="location">'.$job[6].",".$job[7].'
+                <h4 id="company"> '.$job[4].'</h4>
+                <p style="font-size:18px" id="short-jobdescription">'.$job[3].'</p>
+                <p class="posted" style="color:#160EEC;font-size:16px">posted on '.date("m/d/Y",$time).'</p>
+                </div>';
+
+
+
+        }
+
+}else{
+
+$jobs_list= queryMysql("SELECT * FROM jobs ORDER BY date_posted DESC LIMIT 9");
+        $job_rows = $jobs_list->num_rows;
+
+        for($j = 0;$j<$job_rows;++$j){
+                $jobs_list->data_seek($j);
+                $job = $jobs_list->fetch_array(MYSQLI_NUM);
+$time = strtotime($job[1]);
+               echo '<div id="job"class="row col-xs-10 col-sm-10 col-md-10" style="font-family:sans-serif;position:relative;right:15px;border-style:solid;border-color:#000000;height:300px;float:right">
+                 <h2 id="jobTitle">'.$job[2].'</h2>
+                <h4 id="company"> '.$job[7].'</h4>
+                <p style="font-size:18px" id="short-jobdescription">'.$job[5].'</p>
+                <p class="posted" style="color:#160EEC;font-size:16px">posted on '.date("m/d/Y",$time).'</p>
+                </div>';
+
+         	      
+
+        }
+}
+echo <<<_END
                 </div>
 
 
