@@ -123,7 +123,7 @@ if($loggedin){
 <!--THIS IS THE START OF THE QUERY FORM -->
                 <div class="row" style="margin-top:30px">
                 <div class="col-md-12 col-xs-12 col-sm-12" style="text-align:center">
-                <form class="form-inline"  method='get' action='mycareerspot.php' id='search' >
+                <form class="form-inline"  method='post' action='mycareerspot.php' id='search' >
                 <div class="form-group input-group-lg" style="text-align:left" >
                 <!--<label  for="majors" style="font-size:18px">Major/Career Area</label><br>-->
                 <input  class="form-control " type="text"  style="width:400px"id="majors" required form='search' name='majors' placeholder="Start Typing A Major/Career Area">
@@ -189,14 +189,16 @@ if($loggedin){
 		         <div class="container-fluid" style="background-color:000000">
 <!-- THIS WILL HOLD THE JOBS AND RECENT SUBMISSION INFORMATION INCLUDING JOB SPECIFIC INFORMATION-->
                 <div class="row" style="width:95%;margin-left:auto;margin-right:auto" >
-                <div class="row" id="suppressscrollX" style="border-style:solid;height:750px;overflow:hidden;position:relative;width:100%;margin-top:45px;margin-left:10px;z-index:1;border-color:#000000">
-                
+   <div class="col-xs-2 col-sm-2 col-md-2" style="position:absolute;margin-left:90px;left:80px;width:20%;margin-top:45px;height:750px;overflow:hidden">
+  </div>
+
+                <div class="row" id="suppressscrollX" style="border-style:solid;height:750px;overflow:hidden;position:relative;left:80px;margin-top:45px;width:90%;margin-left:10px;z-index:1;border-color:#000000">
 _END;
 
-if(isset($_GET['careers']) && isset($_GET['majors']) && isset($_GET['city']) && isset($_GET['state'])){
-$major = sanitizeString($_GET['majors']);
-$city = sanitizeString($_GET['city']);
-$state = sanitizeString($_GET['state']);
+if(isset($_POST['careers']) && isset($_POST['majors']) && isset($_POST['city']) && isset($_POST['state'])){
+$major = sanitizeString($_POST['majors']);
+$city = sanitizeString($_POST['city']);
+$state = sanitizeString($_POST['state']);
 $jobs_list= queryMysql("SELECT jobs.date_posted, jobs.job_title,jobs.job_category,jobs.short_job_description,jobs.company, college_majors.Name, cities.city,cities.state_code FROM jobs LEFT JOIN cities ON jobs.city = cities.id LEFT JOIN college_majors ON jobs.major = college_majors.major_id LEFT JOIN states_provinces ON cities.state_code = states_provinces.state_prov WHERE college_majors.Name LIKE '%$major%'  AND (states_provinces.state_prov LIKE '%$state%' OR states_provinces.code LIKE '$state') AND cities.city LIKE '%$city%' ORDER BY date_posted DESC LIMIT 9");
 
 $job_rows = $jobs_list->num_rows;
@@ -205,7 +207,7 @@ $job_rows = $jobs_list->num_rows;
                 $jobs_list->data_seek($j);
                 $job = $jobs_list->fetch_array(MYSQLI_NUM);
 $time = strtotime($job[0]);
-               echo '<div id="job"class="row col-xs-10 col-sm-10 col-md-10" style="font-family:sans-serif;position:relative;right:15px;border-style:solid;border-color:#000000;height:300px;float:right">
+               echo '<div id="job"class="row col-xs-10 col-sm-10 col-md-9" style="font-family:sans-serif;z-index:1;position:relative;right:15px;border-style:solid;border-color:#000000;height:250px;float:right">
                  <h2 id="jobTitle">'.$job[1].'</h2>
                 <h4 id="location">'.$job[6].",".$job[7].'
                 <h4 id="company"> '.$job[4].'</h4>
@@ -217,10 +219,10 @@ $time = strtotime($job[0]);
 
         }
 
-}elseif (isset($_GET['internships']) && isset($_GET['majors']) && isset($_GET['city']) && isset($_GET['state'])){
-$major = sanitizeString($_GET['majors']);
-$city = sanitizeString($_GET['city']);
-$state = sanitizeString($_GET['state']);
+}elseif (isset($_POST['internships']) && isset($_POST['majors']) && isset($_POST['city']) && isset($_POST['state'])){
+$major = sanitizeString($_POST['majors']);
+$city = sanitizeString($_POST['city']);
+$state = sanitizeString($_POST['state']);
 $jobs_list= queryMysql("SELECT internships.date_posted, internships.intern_title,internships.intern_category,internships.short_position_description,internships.company, college_majors.Name, cities.city,cities.state_code FROM internships LEFT JOIN cities ON internships.city = cities.id LEFT JOIN college_majors ON internships.major = college_majors.major_id LEFT JOIN states_provinces ON cities.state_code = states_provinces.state_prov WHERE college_majors.Name LIKE '%$major%'  AND (states_provinces.state_prov LIKE '%$state%' OR states_provinces.code LIKE '$state') AND cities.city LIKE '%$city%' ORDER BY date_posted DESC LIMIT 9");
 
 $job_rows = $jobs_list->num_rows;
@@ -229,7 +231,7 @@ $job_rows = $jobs_list->num_rows;
                 $jobs_list->data_seek($j);
                 $job = $jobs_list->fetch_array(MYSQLI_NUM);
 $time = strtotime($job[0]);
-               echo '<div id="job"class="row col-xs-10 col-sm-10 col-md-10" style="font-family:sans-serif;position:relative;right:15px;border-style:solid;border-color:#000000;height:300px;float:right">
+               echo '<div id="job"class="row col-xs-10 col-sm-10 col-md-9" style="font-family:sans-serif;z-index:1;position:relative;right:15px;border-style:solid;border-color:#000000;height:250px;float:right">
                  <h2 id="jobTitle">'.$job[1].'</h2>
                 <h4 id="location">'.$job[6].",".$job[7].'
                 <h4 id="company"> '.$job[4].'</h4>
@@ -243,17 +245,18 @@ $time = strtotime($job[0]);
 
 }else{
 
-$jobs_list= queryMysql("SELECT * FROM jobs ORDER BY date_posted DESC LIMIT 9");
+$jobs_list= queryMysql("SELECT jobs.date_posted, jobs.job_title,jobs.job_category,jobs.short_job_description,jobs.company, cities.city,cities.state_code FROM jobs LEFT JOIN cities ON jobs.city = cities.id LEFT JOIN states_provinces ON cities.state_code = states_provinces.state_prov  ORDER BY date_posted DESC LIMIT 9");
         $job_rows = $jobs_list->num_rows;
 
         for($j = 0;$j<$job_rows;++$j){
                 $jobs_list->data_seek($j);
                 $job = $jobs_list->fetch_array(MYSQLI_NUM);
-$time = strtotime($job[1]);
-               echo '<div id="job"class="row col-xs-10 col-sm-10 col-md-10" style="font-family:sans-serif;position:relative;right:15px;border-style:solid;border-color:#000000;height:300px;float:right">
-                 <h2 id="jobTitle">'.$job[2].'</h2>
-                <h4 id="company"> '.$job[7].'</h4>
-                <p style="font-size:18px" id="short-jobdescription">'.$job[5].'</p>
+$time = strtotime($job[0]);
+ echo '<div id="job"class="row col-xs-10 col-sm-10 col-md-9" style="font-family:sans-serif;position:relative;right:15px;z-index:1;border-style:solid;border-color:#000000;height:250px;float:right">
+                 <h2 id="jobTitle">'.$job[1].'</h2>
+                <h4 id="location">'.$job[5].",".$job[6].'
+                <h4 id="company"> '.$job[4].'</h4>
+                <p style="font-size:18px" id="short-jobdescription">'.$job[3].'</p>
                 <p class="posted" style="color:#160EEC;font-size:16px">posted on '.date("m/d/Y",$time).'</p>
                 </div>';
 
