@@ -208,12 +208,15 @@ $job_rows = $jobs_list->num_rows;
                 $job = $jobs_list->fetch_array(MYSQLI_NUM);
 $time = strtotime($job[0]);
                echo '<div id="job"class="row col-xs-10 col-sm-10 col-md-9" style="font-family:sans-serif;z-index:1;position:relative;right:15px;border-style:solid;border-color:#000000;height:250px;float:right">
-                 <h2 id="jobTitle">'.$job[1].'</h2>
+                <div style="float:left;width:80%"> <h2 id="jobTitle">'.$job[1].'</h2>
                 <h4 id="location">'.$job[6].",".$job[7].'
                 <h4 id="company"> '.$job[4].'</h4>
                 <p style="font-size:18px" id="short-jobdescription">'.$job[3].'</p>
-                <p class="posted" style="color:#160EEC;font-size:16px">posted on '.date("m/d/Y",$time).'</p>
-                </div>';
+                <p class="posted" style="color:#160EEC;font-size:16px">posted on '.date("m/d/Y",$time).'</p></div>
+<button type="button" class="btn btn-primary btn-lg active" style="position:relative;top:80px;background-color:#160EEC">Quick Apply</button><br>
+<button type="button" class="btn btn-primary btn-lg active" style="position:relative;top:100px;background-color:#160EEC">Add to Favorites</button>
+   
+		  </div>';
 
 
 
@@ -232,11 +235,15 @@ $job_rows = $jobs_list->num_rows;
                 $job = $jobs_list->fetch_array(MYSQLI_NUM);
 $time = strtotime($job[0]);
                echo '<div id="job"class="row col-xs-10 col-sm-10 col-md-9" style="font-family:sans-serif;z-index:1;position:relative;right:15px;border-style:solid;border-color:#000000;height:250px;float:right">
-                 <h2 id="jobTitle">'.$job[1].'</h2>
+             <div style="float:left;width:80%">
+		 <h2 id="jobTitle">'.$job[1].'</h2>
                 <h4 id="location">'.$job[6].",".$job[7].'
                 <h4 id="company"> '.$job[4].'</h4>
                 <p style="font-size:18px" id="short-jobdescription">'.$job[3].'</p>
-                <p class="posted" style="color:#160EEC;font-size:16px">posted on '.date("m/d/Y",$time).'</p>
+                <p class="posted" style="color:#160EEC;font-size:16px">posted on '.date("m/d/Y",$time).'</p></div>
+<button type="button" class="btn btn-primary btn-lg active"  style="position:relative;top:80px;background-color:#160EEC">Quick Apply</button><br>
+<button type="button" class="btn btn-primary btn-lg active" style="position:relative;top:100px;background-color:#160EEC">Add to Favorites</button>
+
                 </div>';
 
 
@@ -253,11 +260,14 @@ $jobs_list= queryMysql("SELECT jobs.date_posted, jobs.job_title,jobs.job_categor
                 $job = $jobs_list->fetch_array(MYSQLI_NUM);
 $time = strtotime($job[0]);
  echo '<div id="job"class="row col-xs-10 col-sm-10 col-md-9" style="font-family:sans-serif;position:relative;right:15px;z-index:1;border-style:solid;border-color:#000000;height:250px;float:right">
-                 <h2 id="jobTitle">'.$job[1].'</h2>
+                 <div style="float:left;width:80%"><h2 id="jobTitle">'.$job[1].'</h2>
                 <h4 id="location">'.$job[5].",".$job[6].'
                 <h4 id="company"> '.$job[4].'</h4>
                 <p style="font-size:18px" id="short-jobdescription">'.$job[3].'</p>
-                <p class="posted" style="color:#160EEC;font-size:16px">posted on '.date("m/d/Y",$time).'</p>
+                <p class="posted" style="color:#160EEC;font-size:16px">posted on '.date("m/d/Y",$time).'</p></div>
+<button type="button" class="btn btn-primary btn-lg active"  style="position:relative;top:80px;background-color:#160EEC">Quick Apply</button><br>
+<button type="button" class="btn btn-primary btn-lg active"  style="background-color:#160EEC;position:relative;top:100px">Add to Favorites</button>
+
                 </div>';
 
          	      
