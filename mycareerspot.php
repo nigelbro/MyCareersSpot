@@ -54,6 +54,33 @@ if($loggedin){
                                 $('#suppressscrollX').perfectScrollbar({suppressScrollX: true});
                                 });
         </script>
+	<script>
+function loadXMLDoc()
+{
+var xmlhttp;
+var emailaddress;
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+	document.getElementById("qapply").innerHTML = "Applied";
+    }
+  }
+var emailaddress = document.getElementById("qapply").getAttribute("email");
+console.log(emailaddress);
+xmlhttp.open("GET","quickApply.php?email=" + emailaddress,true);
+xmlhttp.send();
+}
+</script>	
+	
                 </head>
 
                 <body style="background-color: #ffffff">
@@ -88,9 +115,9 @@ if($loggedin){
                 Resumes <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu" style="font-size: 20px" role="menu">
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Upload Resumes</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Edit Resumes</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Delete Resumes</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="resumemanagement.php">Upload Resumes</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href=""resumemanagement.php">Edit Resumes</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href=""resumemanagement.php">Delete Resumes</a></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Resume Help</a></li>
                 </ul>
                 </li>
@@ -199,7 +226,7 @@ if(isset($_POST['careers']) && isset($_POST['majors']) && isset($_POST['city']) 
 $major = sanitizeString($_POST['majors']);
 $city = sanitizeString($_POST['city']);
 $state = sanitizeString($_POST['state']);
-$jobs_list= queryMysql("SELECT jobs.date_posted, jobs.job_title,jobs.job_category,jobs.short_job_description,jobs.company, college_majors.Name, cities.city,cities.state_code FROM jobs LEFT JOIN cities ON jobs.city = cities.id LEFT JOIN college_majors ON jobs.major = college_majors.major_id LEFT JOIN states_provinces ON cities.state_code = states_provinces.state_prov WHERE college_majors.Name LIKE '%$major%'  AND (states_provinces.state_prov LIKE '%$state%' OR states_provinces.code LIKE '$state') AND cities.city LIKE '%$city%' ORDER BY date_posted DESC LIMIT 9");
+$jobs_list= queryMysql("SELECT jobs.date_posted, jobs.job_title,jobs.job_category,jobs.short_job_description,jobs.company, college_majors.Name, cities.city,cities.state_code ,jobs.recruiter_hr_contact,FROM jobs LEFT JOIN cities ON jobs.city = cities.id LEFT JOIN college_majors ON jobs.major = college_majors.major_id LEFT JOIN states_provinces ON cities.state_code = states_provinces.state_prov WHERE college_majors.Name LIKE '%$major%'  AND (states_provinces.state_prov LIKE '%$state%' OR states_provinces.code LIKE '$state') AND cities.city LIKE '%$city%' ORDER BY date_posted DESC LIMIT 9");
 
 $job_rows = $jobs_list->num_rows;
 
@@ -207,13 +234,15 @@ $job_rows = $jobs_list->num_rows;
                 $jobs_list->data_seek($j);
                 $job = $jobs_list->fetch_array(MYSQLI_NUM);
 $time = strtotime($job[0]);
+$email = $job[8];
+echo $email;
                echo '<div id="job"class="row col-xs-10 col-sm-10 col-md-9" style="font-family:sans-serif;z-index:1;position:relative;right:15px;border-style:solid;border-color:#000000;height:250px;float:right">
                 <div style="float:left;width:80%"> <h2 id="jobTitle">'.$job[1].'</h2>
                 <h4 id="location">'.$job[6].",".$job[7].'
                 <h4 id="company"> '.$job[4].'</h4>
                 <p style="font-size:18px" id="short-jobdescription">'.$job[3].'</p>
                 <p class="posted" style="color:#160EEC;font-size:16px">posted on '.date("m/d/Y",$time).'</p></div>
-<button type="button" class="btn btn-primary btn-lg active" style="position:relative;top:80px;background-color:#160EEC">Quick Apply</button><br>
+<button type="button"id="qapply" email="'.$job[8].'" onclick="loadXMLDoc()" class="btn btn-primary btn-lg active" style="position:relative;top:80px;background-color:#160EEC">Quick Apply</button><br>
 <button type="button" class="btn btn-primary btn-lg active" style="position:relative;top:100px;background-color:#160EEC">Add to Favorites</button>
    
 		  </div>';
@@ -241,7 +270,7 @@ $time = strtotime($job[0]);
                 <h4 id="company"> '.$job[4].'</h4>
                 <p style="font-size:18px" id="short-jobdescription">'.$job[3].'</p>
                 <p class="posted" style="color:#160EEC;font-size:16px">posted on '.date("m/d/Y",$time).'</p></div>
-<button type="button" class="btn btn-primary btn-lg active"  style="position:relative;top:80px;background-color:#160EEC">Quick Apply</button><br>
+<button type="button" id="qapply" onclick="loadXMLDoc()"  class="btn btn-primary btn-lg active"  style="position:relative;top:80px;background-color:#160EEC">Quick Apply</button><br>
 <button type="button" class="btn btn-primary btn-lg active" style="position:relative;top:100px;background-color:#160EEC">Add to Favorites</button>
 
                 </div>';
@@ -252,7 +281,7 @@ $time = strtotime($job[0]);
 
 }else{
 
-$jobs_list= queryMysql("SELECT jobs.date_posted, jobs.job_title,jobs.job_category,jobs.short_job_description,jobs.company, cities.city,cities.state_code FROM jobs LEFT JOIN cities ON jobs.city = cities.id LEFT JOIN states_provinces ON cities.state_code = states_provinces.state_prov  ORDER BY date_posted DESC LIMIT 9");
+$jobs_list= queryMysql("SELECT jobs.date_posted, jobs.job_title,jobs.job_category,jobs.short_job_description,jobs.company, cities.city,cities.state_code,jobs.recruiter_hr_contact FROM jobs LEFT JOIN cities ON jobs.city = cities.id LEFT JOIN states_provinces ON cities.state_code = states_provinces.state_prov  ORDER BY date_posted DESC LIMIT 9");
         $job_rows = $jobs_list->num_rows;
 
         for($j = 0;$j<$job_rows;++$j){
@@ -265,7 +294,7 @@ $time = strtotime($job[0]);
                 <h4 id="company"> '.$job[4].'</h4>
                 <p style="font-size:18px" id="short-jobdescription">'.$job[3].'</p>
                 <p class="posted" style="color:#160EEC;font-size:16px">posted on '.date("m/d/Y",$time).'</p></div>
-<button type="button" class="btn btn-primary btn-lg active"  style="position:relative;top:80px;background-color:#160EEC">Quick Apply</button><br>
+<button type="button" id="qapply" email="'.$job[7].'" onclick="loadXMLDoc()" class="btn btn-primary btn-lg active"  style="position:relative;top:80px;background-color:#160EEC">Quick Apply</button><br>
 <button type="button" class="btn btn-primary btn-lg active"  style="background-color:#160EEC;position:relative;top:100px">Add to Favorites</button>
 
                 </div>';
