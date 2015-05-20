@@ -49,7 +49,7 @@ $token = hash('ripemd128', "$salt1$password$salt2");
   }
     else
     {
-      $result = queryMysql("SELECT * FROM signup WHERE email='$email'");
+      $result = queryMysql("SELECT * FROM job_seekers WHERE email='$email'");
 
       if ($result->num_rows){
         $error = "That email address already exists<br><br>";
@@ -58,7 +58,7 @@ $token = hash('ripemd128', "$salt1$password$salt2");
 
       else
       {
-        queryMysql("INSERT INTO signup (FirstName,LastName,Country,City,State,ZipCode,Email,Password)VALUES('$fname','$lname','$country','$city','$state','$zipcode','$email','$token')");
+        queryMysql("INSERT INTO job_seekers (FirstName,LastName,Country,City,State,ZipCode,Email,Password)VALUES('$fname','$lname','$country','$city','$state','$zipcode','$email','$token')");
         $_SESSION['email'] = $_POST['email'];
         header('location: mycareerspot.php');
       }

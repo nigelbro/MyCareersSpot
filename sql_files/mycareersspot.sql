@@ -30310,10 +30310,10 @@ INSERT INTO `profile_picture` (`Email`, `Type`, `Name`, `IMG`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `signup`
+-- Table structure for table `job_seekers`
 --
 
-CREATE TABLE IF NOT EXISTS `signup` (
+CREATE TABLE IF NOT EXISTS `job_seekers` (
   `FirstName` varchar(128) DEFAULT NULL,
   `LastName` varchar(128) DEFAULT NULL,
   `Country` varchar(128) DEFAULT NULL,
@@ -30335,10 +30335,10 @@ CREATE TABLE IF NOT EXISTS `signup` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `signup`
+-- Dumping data for table `job_seekers`
 --
 
-INSERT INTO `signup` (`FirstName`, `LastName`, `Country`, `City`, `State`, `ZipCode`, `Email`, `CollegeUniversity`, `EducationLevel`, `Degree`, `Major`, `PhoneNumber`, `LinkedInUrl`, `PortfolioLink`, `Password`, `image`) VALUES
+INSERT INTO `job_seekers` (`FirstName`, `LastName`, `Country`, `City`, `State`, `ZipCode`, `Email`, `CollegeUniversity`, `EducationLevel`, `Degree`, `Major`, `PhoneNumber`, `LinkedInUrl`, `PortfolioLink`, `Password`, `image`) VALUES
 (' Alyna ', 'Brown', 'united states', 'buffalo', 'new york', '14213', 'amerri27@hotmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'c7e5f80f157384eab3265b732de36488', 'amerri27@hotmail.com.jpg'),
 (' hoy ', 'tom', 'united states', 'naval anacost annex', 'district of columbia', '142132', 'asd@yahoo.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '3fb8df6e9d8b5315cae79fce3f32df15', NULL),
 (' bill ', 'Knowblac', 'united states', 'buffalo', 'new york', '14221', 'bill.knowblac@yahoo.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '9d9b6aab967c537ab9ba09f874f8823b', 'bill.knowblac@yahoo.com.jpg'),

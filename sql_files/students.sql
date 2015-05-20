@@ -16,13 +16,13 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `signup`
+-- Table structure for table `job_seekers`
 --
 
-DROP TABLE IF EXISTS `signup`;
+DROP TABLE IF EXISTS `job_seekers`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `signup` (
+CREATE TABLE `job_seekers` (
   `FirstName` varchar(128) DEFAULT NULL,
   `LastName` varchar(128) DEFAULT NULL,
   `Country` varchar(128) DEFAULT NULL,
@@ -43,13 +43,13 @@ CREATE TABLE `signup` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `signup`
+-- Dumping data for table `job_seekers`
 --
 
-LOCK TABLES `signup` WRITE;
-/*!40000 ALTER TABLE `signup` DISABLE KEYS */;
-INSERT INTO `signup` VALUES (' nigel ','Brown','united states','buffalo','new york','14213','nigelbro@buffalo.edu','suny college at buffalo','College Junior','High School Diploma','Chemistry','','','','3fb8df6e9d8b5315cae79fce3f32df15'),(' Alyna ','Brown','united states','buffalo','new york','14213','lyna427@hotmail.com','d','College Graduate','Bachelor Degree','Biology','','','','9ba63a14bf2476ae9d1ebdf06a4d4d3b'),(' nigel ','smith','united states','buffalo','new york','14221','amerri27@hotmail.com','university at buffalo','College Senior','Bachelor Degree','Physics','','','','dd5f5ce0dbf7d35f5a58e0cae9622dc8'),('','',NULL,NULL,NULL,NULL,'',NULL,NULL,NULL,NULL,NULL,NULL,NULL,''),(' nigel ','Brown','united states','syracuse','new york','134212','devante_b2005@yahoo.com','bryant & stratton college-main syracuse','College Junior','Bachelor Degree','Physics','','','','3fb8df6e9d8b5315cae79fce3f32df15');
-/*!40000 ALTER TABLE `signup` ENABLE KEYS */;
+LOCK TABLES `job_seekers` WRITE;
+/*!40000 ALTER TABLE `job_seekers` DISABLE KEYS */;
+INSERT INTO `job_seekers` VALUES (' nigel ','Brown','united states','buffalo','new york','14213','nigelbro@buffalo.edu','suny college at buffalo','College Junior','High School Diploma','Chemistry','','','','3fb8df6e9d8b5315cae79fce3f32df15'),(' Alyna ','Brown','united states','buffalo','new york','14213','lyna427@hotmail.com','d','College Graduate','Bachelor Degree','Biology','','','','9ba63a14bf2476ae9d1ebdf06a4d4d3b'),(' nigel ','smith','united states','buffalo','new york','14221','amerri27@hotmail.com','university at buffalo','College Senior','Bachelor Degree','Physics','','','','dd5f5ce0dbf7d35f5a58e0cae9622dc8'),('','',NULL,NULL,NULL,NULL,'',NULL,NULL,NULL,NULL,NULL,NULL,NULL,''),(' nigel ','Brown','united states','syracuse','new york','134212','devante_b2005@yahoo.com','bryant & stratton college-main syracuse','College Junior','Bachelor Degree','Physics','','','','3fb8df6e9d8b5315cae79fce3f32df15');
+/*!40000 ALTER TABLE `job_seekers` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

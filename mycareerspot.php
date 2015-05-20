@@ -10,7 +10,8 @@ if (isset($_SESSION['email']))
 }
 else $loggedin = FALSE;
 if($loggedin){
-        $result = queryMysql("SELECT * FROM signup WHERE Email='$email'");
+
+        $result = queryMysql("SELECT * FROM job_seekers WHERE Email='$email'");
         $rows = $result->num_rows;
 
         for($j = 0;$j<$rows;++$j){

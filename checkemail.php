@@ -4,7 +4,7 @@
   if (isset($_POST['email']))
   {
     $email   = sanitizeString($_POST['email']);
-    $result = queryMysql("SELECT * FROM signup WHERE Email='$email'");
+    $result = queryMysql("SELECT * FROM job_seekers WHERE Email='$email'");
 
     if ($result->num_rows)
       echo  "<span class='taken'id='emailstatus'>" .

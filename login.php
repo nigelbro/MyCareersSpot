@@ -14,7 +14,7 @@ if (isset($_POST['email']))
     }else
     {
 
-      $result = queryMySQL("SELECT Email,Password FROM signup
+      $result = queryMySQL("SELECT Email,Password FROM job_seekers
         WHERE Email='$email' AND Password='$token'");
 
       if ($result->num_rows == 0)
